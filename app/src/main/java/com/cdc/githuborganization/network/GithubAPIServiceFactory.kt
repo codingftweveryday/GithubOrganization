@@ -17,7 +17,7 @@ class GithubAPIServiceFactory {
       logging.setLevel(HttpLoggingInterceptor.Level.BODY)
       val httpClient = OkHttpClient.Builder()
       httpClient.addInterceptor(logging)
-//      httpClient.addInterceptor(MockServer())
+      httpClient.addInterceptor(MockServer())
 
       val retrofit = Retrofit.Builder()
         .client(httpClient.build())

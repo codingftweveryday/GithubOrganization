@@ -28,12 +28,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.cdc.githuborganization.detail.DetailActivity
 import com.cdc.githuborganization.model.OrganizationUI
 import com.cdc.githuborganization.network.GithubAPIServiceFactory
 import com.cdc.githuborganization.ui.theme.GithubOrganizationTheme
 import com.cdc.githuborganization.widget.ListItemComposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 
+const val ORGANIZATION_EXTRA = "organization_extra"
 
 class ListActivity : ComponentActivity(), ListPresenter.Interface {
 
@@ -84,6 +86,14 @@ class ListActivity : ComponentActivity(), ListPresenter.Interface {
 
   override fun displayError(message: String) {
     Toast.makeText(this, message, LENGTH_SHORT).show()
+  }
+
+  override fun goToDetailPage(organization: OrganizationUI) {
+    val intent = Intent(this, DetailActivity::class.java).apply {
+      putExtra(ORGANIZATION_EXTRA, organization)
+      putExtra("abc", "abccc")
+    }
+    startActivity(intent)
   }
 }
 

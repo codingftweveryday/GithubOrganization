@@ -1,5 +1,7 @@
 ![Screenshot of the app](screenshot.png)
 
+![](detail-activity.gif)
+
 I spent about 3 ~ 4 hours on this project.
 
 I used a simple MVP structure for this app. The presenter can be unit-tested easily.

@@ -1,5 +1,6 @@
 package com.cdc.githuborganization.listpage
 
+import com.cdc.githuborganization.model.OrganizationUI
 import com.cdc.githuborganization.network.GithubOrganizationAPIService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -12,6 +13,7 @@ class ListPresenter(
 ) {
 
   interface Interface {
+    fun goToDetailPage(organization: OrganizationUI)
     fun goToBrowser(url: String)
     fun displayError(message: String)
   }
@@ -78,7 +80,9 @@ class ListPresenter(
     eventPublish.subscribe(
       { uiEvent ->
         when (uiEvent) {
-          is ListPageUIEvent.OrganizationClicked -> {}
+          is ListPageUIEvent.OrganizationClicked -> {
+            page.goToDetailPage(uiEvent.organization)
+          }
           is ListPageUIEvent.UrlClicked -> page.goToBrowser(uiEvent.url)
           ListPageUIEvent.BottomReached -> loadOrganizations()
         }
